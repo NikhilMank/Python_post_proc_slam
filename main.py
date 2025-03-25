@@ -4,18 +4,20 @@ from src.post_proc_slam import FloorPlanProcessor as SLAM
 import argparse
 import os
 
-# arg parser
-parser = argparse.ArgumentParser(description='Post-process SLAM output')
-parser.add_argument('--image_dir', type=str, required=True, help='Path to the directory containing the images')
-parser.add_argument('--yaml_path', type=str, required=True, help='Path to the YAML file containing metadata')
-parser.add_argument('--output_dir', type=str, required=True, help='Path to the output directory')
-parser.add_argument('--output_format', type=str, choices=['png', 'jpg'], required=True, help='Output image format (png, jpg)')
-parser.add_argument('--vector_format', type=str, choices=['yes', 'no'], required=True, help='Generate vector format (yes/no)')
-parser.add_argument('--vector_choice', type=str, choices=['svg', 'json', 'dxf'], help='Choice of vector format (svg, json)')
-args = parser.parse_args()
+def parse_arguments():
+    parser = argparse.ArgumentParser(description='Post-process SLAM output')
+    parser.add_argument('--image_dir', type=str, required=True, help='Path to the directory containing the images')
+    parser.add_argument('--yaml_path', type=str, required=True, help='Path to the YAML file containing metadata')
+    parser.add_argument('--output_dir', type=str, required=True, help='Path to the output directory')
+    parser.add_argument('--output_format', type=str, choices=['png', 'jpg'], required=True, help='Output image format (png, jpg)')
+    parser.add_argument('--vector_format', type=str, choices=['yes', 'no'], required=True, help='Generate vector format (yes/no)')
+    parser.add_argument('--vector_choice', type=str, choices=['svg', 'json', 'dxf'], help='Choice of vector format (svg, json, dxf)')
+    return parser.parse_args()
 
 
 def main():
+    
+    args = parse_arguments()
     
     # make a list of paths that ends with .pgm in the image directory
     image_paths = [os.path.join(args.image_dir, f) for f in os.listdir(args.image_dir) if f.endswith('.pgm')]
