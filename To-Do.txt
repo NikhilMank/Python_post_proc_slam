@@ -1,7 +1,0 @@
-setup.py
-ReadME
-change the save logic of the output file. use the imagefilename_plan.png
-create a class with the processing functions and remove from utils (optional)
-arg parse- input file folder path (maybe use glob to check file format),
-            output image format (png, jpg),
-            vector_format yes/no, vector format(svg, json, etc)
