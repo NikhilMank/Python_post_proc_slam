@@ -61,6 +61,7 @@ pip install -r requirements.txt
                             --output_dir <output_directory> \
                             --output_format <png|jpg> \
                             --vector_format <yes|no> \
+                        <!-- Note: The `--vector_choice` option should only be specified if the `--vector_format` is selected as <yes> -->
                             --vector_choice <svg|json|dxf>
       ```
 
@@ -75,6 +76,12 @@ python main.py --image_dir ./data \
                       --output_format png \
                       --vector_format yes \
                       --vector_choice svg
+
+python main.py --image_dir ./data \
+                        --yaml_path ./data/room1.yaml \
+                        --output_dir ./output \
+                      --output_format png \
+                      --vector_format no
 ```
 
 ## Contact

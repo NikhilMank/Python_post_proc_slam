@@ -3,6 +3,7 @@ from src.utils import *
 from src.post_proc_slam import FloorPlanProcessor as SLAM
 import argparse
 import os
+import sys
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Post-process SLAM output')
@@ -11,7 +12,7 @@ def parse_arguments():
     parser.add_argument('--output_dir', type=str, required=True, help='Path to the output directory')
     parser.add_argument('--output_format', type=str, choices=['png', 'jpg'], required=True, help='Output image format (png, jpg)')
     parser.add_argument('--vector_format', type=str, choices=['yes', 'no'], required=True, help='Generate vector format (yes/no)')
-    parser.add_argument('--vector_choice', type=str, choices=['svg', 'json', 'dxf'], help='Choice of vector format (svg, json, dxf)')
+    parser.add_argument('--vector_choice', type=str, choices=['svg', 'json', 'dxf'], help='Choice of vector format (svg, json, dxf)', required='--vector_format' in sys.argv and 'yes' in sys.argv)
     return parser.parse_args()
 
 
@@ -36,7 +37,7 @@ def main():
         )
 
         edges = slam.detect_edges(binary_image)
-        lines = slam.detect_lines(edges, metadata['resolution'])
+        lines = slam.detect_lines(edges)
         
         floor_plan = slam.draw_floor_plan(lines, image)
         

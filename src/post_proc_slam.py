@@ -9,7 +9,7 @@ class FloorPlanProcessor:
     def __init__(self):
         pass
 
-    def detect_edges(self, binary_image, low_threshold=100, high_threshold=200):
+    def detect_edges(self, binary_image, low_threshold=50, high_threshold=150):
         """Detects the edges in the images using the Canny edge detector.
 
         Args:

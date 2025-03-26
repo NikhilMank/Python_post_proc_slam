@@ -120,5 +120,6 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-# todo.txt
+# todo.txt main.ipynb
 To-Do.txt
+main.ipynb
